@@ -123,7 +123,7 @@ class EmotionDetector:
             if not isinstance(video[0], Image.Image):
                 raise ValueError("provide video as either list of PIL images or a string path to the video")    
         
-        video = self.vision.process_images(video)      
+        video = self.vision.process_video(video)      
         return video
     
     def compute_audio_features(self, audio: Union[str,np.ndarray]):

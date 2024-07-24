@@ -1,1 +1,0 @@
-from ared.emotion_detector import EmotionDetector
