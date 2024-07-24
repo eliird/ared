@@ -1,6 +1,6 @@
 # Emotion Detection Model
 
-This ared library can be used to detect emotion of a social scenario from either video or audio
+This ared library is a multimodal emotion detection library. You can use it to detect emotion of the speaker using text, audio and visual information.
 
 # Model
 The weights for the models used in the video can be downloaded form [here](https://drive.google.com/drive/folders/190PTe_n33NAxBpr7JslZ-2iNr1Mxx0La?usp=sharing)
