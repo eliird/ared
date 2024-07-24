@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from model.embracenet import EmbraceNet
-from model.transformer import TransformerEncoder
+from .embracenet import EmbraceNet
+from .transformer import TransformerEncoder
 
 class EmotionNet(nn.Module):
     def __init__(self, hyper_params):
@@ -19,7 +19,6 @@ class EmotionNet(nn.Module):
         embrace = self.embrace(x_a, x_b, x_c)
         out = self.classifier(embrace)
         return out
-
 
 class EmbracedNetwork(nn.Module):
     def __init__(self, hyper_params):

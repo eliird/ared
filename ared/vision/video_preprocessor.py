@@ -20,10 +20,12 @@ class VidePreprocessor:
         normalize,
     ])
     
-    def __init__(self,  max_num_imgs=50, vision_extractor_weights: str='./weights/MELDSceneNet_best.pth'):
+    def __init__(self,   vision_extractor_weights: str='./weights/MELDSceneNet_best.pth', device: str='cuda', max_num_imgs=50,):
         self.transform = self.preprocessing
         self.max_num_imgs = max_num_imgs
+        self.device = device
         self.vision_feature_extractor = VisionFeatureExtractor()
+        self.vision_feature_extractor.to(device)
         self.vision_feature_extractor.load_state_dict(torch.load(vision_extractor_weights))
         self.vision_features = {}
 
@@ -37,9 +39,7 @@ class VidePreprocessor:
     
     def process_video(self, path):
         cap = cv2.VideoCapture(path)
-        
         images = []
-        
         while(True):
             ret, frame = cap.read()
             if not ret:
@@ -49,9 +49,7 @@ class VidePreprocessor:
                 images.append(images[-1].copy())
             # TODO check for the RGB orientation
             images.append(Image.fromarray(frame))
-        
         images = random.sample(images, self.max_num_imgs)
-        print(len(images))
         return self.process_images(images)
             
     def process_images(self, images: list):
@@ -67,7 +65,7 @@ class VidePreprocessor:
             vid_tensor[0][i] = self.transform(images[i])
         
         with torch.no_grad():
-            self.vision_feature_extractor(vid_tensor)
+            self.vision_feature_extractor(vid_tensor.to(self.device))
         
-        return self.vision_features['lstm']
+        return self.vision_features['lstm'].squeeze()
          

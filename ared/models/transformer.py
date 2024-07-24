@@ -1,8 +1,8 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
-from model.encodings import SinusoidalPositionalEmbedding
-from model.multihead_attention import MultiheadAttention
+from .encodings import SinusoidalPositionalEmbedding
+from .multihead_attention import MultiheadAttention
 import math
 
 

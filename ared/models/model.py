@@ -1,5 +1,5 @@
 import torch
-from emotionnet import EmotionNet
+from .emotionnet import EmotionNet
 
 
 

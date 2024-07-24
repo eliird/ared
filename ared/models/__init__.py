@@ -1,1 +1,1 @@
-from model import MELDImage, MMER
+from .model import MMER
