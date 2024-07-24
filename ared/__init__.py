@@ -1,1 +1,2 @@
-from .ared import build_emotion_detector, EmotionDetector
+from .emotion_detector import EmotionDetector
+from .audio import ASR

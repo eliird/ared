@@ -4,6 +4,9 @@ from .emotionnet import EmotionNet
 
 
 class MMER(torch.nn.Module):
+    '''
+    Multimodal model to classify the emotion of the speaker in Ekman's 7 classes
+    '''
     def __init__(self, hyper_params) -> None:
         super(MMER, self).__init__()
         self.base = EmotionNet(hyper_params)

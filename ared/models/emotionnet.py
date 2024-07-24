@@ -21,6 +21,9 @@ class EmotionNet(nn.Module):
         return out
 
 class EmbracedNetwork(nn.Module):
+    '''
+    Model combined with three crossmodal blocks for 3 modalities and EmbraceNet at the end
+    '''
     def __init__(self, hyper_params):
         super(EmbracedNetwork, self).__init__()
         self.device = hyper_params.device
@@ -44,6 +47,11 @@ class EmbracedNetwork(nn.Module):
         return embrace
     
 class CrossModal(nn.Module):
+    '''
+    Model that computes cross attention between the three modalities
+        att 1 - mod a with mod b
+        att 2 - mod a with mod c
+    '''
     def __init__(self, d_mod_a, d_mod_b, d_mod_c, hyper_params):
         super(CrossModal, self).__init__()
         self.cross_att1 = CrossAttention(d_mod_a, d_mod_b, hyper_params)
@@ -59,6 +67,9 @@ class CrossModal(nn.Module):
         return h
     
 class CrossAttention(nn.Module):
+    '''
+    Compute cross attention between two modalities
+    '''
     def __init__(self, d_mod_a, d_mod_b, hyper_params) -> None:
         super(CrossAttention, self).__init__()
         self.orig_d_mod_a, self.orig_d_mod_b = d_mod_a, d_mod_b
@@ -104,6 +115,9 @@ class CrossAttention(nn.Module):
         return h_ls
 
 class MixCrossAttention(nn.Module):
+    '''
+    model to combine the outputs of the two cross attention models
+    '''
     def __init__(self, d_mod, hyper_params) -> None:
         super(MixCrossAttention, self).__init__()
         self.orig_d_mod = d_mod

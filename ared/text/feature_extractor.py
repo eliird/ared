@@ -8,6 +8,18 @@ from transformers import AdamW
 
 
 class TextFeatureExtractor:
+    """
+    Extracts text features using a pre-trained GPT-2 model.
+    
+    The `TextFeatureExtractor` class loads a pre-trained GPT-2 model and tokenizer, and provides a method to extract features from a given utterance. The extracted features are the hidden states from the last layer of the GPT-2 model.
+    
+    Args:
+        model_chekpoint (str): The path to the pre-trained GPT-2 model checkpoint.
+        device (str, optional): The device to use for the model, either 'cuda' or 'cpu'. Defaults to 'cuda'.
+    
+    Returns:
+        torch.Tensor: The extracted features for the given utterance.
+    """
     def __init__(self, model_chekpoint: str, device: str='cuda'):
         model_name = "gpt2"
 
@@ -21,7 +33,16 @@ class TextFeatureExtractor:
         self.model.resize_token_embeddings(len(self.tokenizer)) 
         self.model.eval()
     
-    def extract_features(self, utterance):
+    def extract_features(self, utterance: str) -> torch.Tensor:
+        """
+        Extracts features from the given utterance using the pre-trained GPT-2 model.
+        
+        Args:
+            utterance (str): The input utterance to extract features from.
+        
+        Returns:
+            torch.Tensor: The extracted features for the given utterance.
+        """
         inp = self.tokenizer(utterance, return_tensors='pt', padding=True, truncation=True)
         inp.to(self.device)
         out = self.model(**inp, output_hidden_states=True)

@@ -4,6 +4,9 @@ from transformers.generation import GenerationConfig
 import torch
 
 class ASR:
+    '''
+    Description: Class to contrain the QWen model with defualt parameters for ASR
+    '''
     def __init__(self, device='cuda'):
         torch.manual_seed(1234)
         self.device = device
@@ -11,6 +14,9 @@ class ASR:
         self.model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-Audio", device_map=self.device, trust_remote_code=True).eval()
 
     def convert_speech_to_text(self, file_path: str):
+        '''
+        Description: Function to take an audio file and transcribe it.
+        '''
         if not os.path.exists(file_path):
             raise ValueError("Invalid file")
         

@@ -2,6 +2,17 @@ import torch
 from facenet_pytorch import InceptionResnetV1
 
 class VisionFeatureExtractor(torch.nn.Module):
+    """
+    Defines a PyTorch module for extracting visual features from a sequence of images using an InceptionResnetV1 model and an LSTM.
+    
+    The `VisionFeatureExtractor` class takes a sequence of images as input, passes them through the InceptionResnetV1 model to extract visual features, and then processes the sequence of features using an LSTM. The final output is a classification of the sequence of images.
+    
+    Args:
+        num_imgs (int): The number of images in the input sequence.
+    
+    Returns:
+        torch.Tensor: A tensor of shape (batch_size, 7) containing the classification probabilities for each of the 7 classes.
+    """
     def __init__(self, num_imgs=50) -> None:
         super(VisionFeatureExtractor, self).__init__()
         self.base = InceptionResnetV1(pretrained='vggface2')
