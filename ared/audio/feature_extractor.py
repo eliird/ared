@@ -67,7 +67,7 @@ class AudioFeatureExtractor:
         self.device = device
         
         self.model = WaveRNNClassification(upsample_scales=[5,5,8], n_classes=3, kernel_size=5, hop_length=200)
-        self.model.state_dict = torch.load(model_weights_path)
+        self.model.state_dict = torch.load(model_weights_path, map_location=self.device)
 
         self.model.to(self.device)
         self.model.eval()
