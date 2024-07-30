@@ -1,4 +1,25 @@
+import os
 import time
+import cv2
+from datetime import datetime
+
+
+def get_video_duration(path):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"File {path} does not exist")
+    
+    data = cv2.VideoCapture(path)
+    # count the number of frames 
+    frames = data.get(cv2.CAP_PROP_FRAME_COUNT) 
+    fps = data.get(cv2.CAP_PROP_FPS) 
+    
+    # calculate duration of the video 
+    seconds = round(frames / fps) 
+    # video_time = datetime.timedelta(seconds=seconds) 
+    # print(f"duration in seconds: {seconds}") 
+    # print(f"video time: {video_time}") 
+    return seconds
+
 
 def timeit(func):
     """

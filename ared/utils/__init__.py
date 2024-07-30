@@ -1,4 +1,4 @@
-from .performace import timeit
+from .performace import timeit, get_video_duration
 from .utilities import NameSpace
 from .utilities import (
     id2emotion, 
