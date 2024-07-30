@@ -23,6 +23,9 @@ setup(
         'torch',
         'torchvision',
         'transformers',
+        'librosa', 'moviepy', 'facenet_pytorch',
+        'tiktoken',
+        'transformers_stream_generator'
     ],
     entry_points={
         'console_scripts': [

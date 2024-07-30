@@ -48,7 +48,7 @@ class VidePreprocessor:
         self.device = device
         self.vision_feature_extractor = VisionFeatureExtractor()
         self.vision_feature_extractor.to(device)
-        self.vision_feature_extractor.load_state_dict(torch.load(vision_extractor_weights))
+        self.vision_feature_extractor.load_state_dict(torch.load(vision_extractor_weights, map_location=self.device))
         self.vision_features = {}
 
         def get_activation(name):
