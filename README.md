@@ -31,13 +31,16 @@ The weights folder contains the weight for the following models
 >mmer - the weights of the cross fusion model from the [paper](https://www.mdpi.com/1424-8220/21/14/4913).
 
 
+You can run `example.py` which generates the plot explaining the relation between inference time and audio duration. The model was trained on 3 seconds audio duration, the clips with longer than 3 seconds were clipped to be seconds and videos will less than 3 seconds were padded to be 3 seconds. The sampling rate of the audio was 44100.
 
+![AudioDuration](AudioDuration_vs_PredictionTime.png)
 **Will possibly add the link to the noteboook which trains all these models in the future**
 
 # Demo
 You can checkout the `demo.py` to see how to use this library.
 You will need to download the asr model to detect the speech from the audio.
 The notebook downloads the [Qwne](https://www.modelscope.cn/models/qwen/QWen-Audio/summary) model but if you want to use another you can replace it with the model of your choice
+
 
 # Usage
 
